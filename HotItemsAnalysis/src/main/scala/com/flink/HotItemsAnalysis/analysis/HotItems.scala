@@ -44,7 +44,7 @@ object HotItems {
       }).assignAscendingTimestamps(_.timeStamp * 1000)
       .filter(_.behavior.equals("pv"))
       .keyBy("itemId")
-      .timeWindow(Time.seconds(10), Time.seconds(5))
+      .timeWindow(Time.seconds(30), Time.seconds(15))
       .aggregate(new CountAgg, new WindowResultFunction)
       .keyBy("windowEnd")
       .process(new TopNHotItems(3))
